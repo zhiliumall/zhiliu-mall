@@ -123,9 +123,9 @@ git clone https://github.com/zhiliumall/zhiflow-uniapp.git
 - **跨境版**：在標準版基礎上，加多幣種、多語言、跨境支付與結算、跨境稅費
 - **醫療版**：在標準版基礎上，加線上問診、視訊問診、問診即時字幕與翻譯、線上處方
 
-官網：【待填】 · 版本與功能對比：【待填】 · 客戶案例：【待填】 · 商務諮詢：17789617999（微信掃描下方 QR Code 添加）
+官網：【待填】 · 版本與功能對比：【待填】 · 客戶案例：【待填】 · 商務諮詢：微信 17789617999（搜尋手機號碼添加），或掃描下方企業微信 QR Code
 
-<img src="doc/images/business-qrcode.jpg" alt="智流商城商務諮詢微信 QR Code" width="180">
+<img src="doc/images/business-qrcode.jpg" alt="智流商城商務諮詢企業微信 QR Code" width="180">
 
 ## 開源版與商業版
 

@@ -123,7 +123,9 @@ Closed-source commercial use, private deployment, commercial support, and the mu
 - **Cross-border edition**: everything in Standard, plus multiple currencies and languages, cross-border payments and settlement, taxes and duties
 - **Healthcare edition**: everything in Standard, plus online consultations, video consultations, live captions and translation, and e-prescriptions
 
-Website: TBD · Edition comparison: TBD · Customer stories: TBD · Sales inquiries: TBD
+Website: TBD · Edition comparison: TBD · Customer stories: TBD · Sales inquiries: +86 17789617999 (scan the QR code below with WeChat)
+
+<img src="doc/images/business-qrcode.jpg" alt="ZhiFlow sales inquiries WeChat QR code" width="180">
 
 ## Open-source vs. commercial
 

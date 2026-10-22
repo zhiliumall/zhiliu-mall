@@ -203,7 +203,7 @@ AGPL-3.0 を守れば無料で使えます。いちばん重要な条件は、�
 
 - 公式サイト：準備中
 - GitHub リポジトリ：https://github.com/zhiliumall/zhiflow
-- Gitee リポジトリ：https://gitee.com/<org>/zhiflow
+- Gitee リポジトリ：https://gitee.com/sssrer/zhiliumall
 - オンラインドキュメント：準備中
 
 ## 関連リポジトリ

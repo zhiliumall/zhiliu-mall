@@ -203,7 +203,7 @@ This open-source repository fits self-run single-store shops, learning Java e-co
 
 - Website: TBD
 - GitHub repository: https://github.com/zhiliumall/zhiflow
-- Gitee repository: https://gitee.com/<org>/zhiflow
+- Gitee repository: https://gitee.com/sssrer/zhiliumall
 - Online docs: TBD
 
 ## Related repositories

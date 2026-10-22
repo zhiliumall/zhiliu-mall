@@ -203,7 +203,7 @@ git clone https://github.com/zhiliumall/zhiflow-uniapp.git
 
 - 官网：【待填】
 - GitHub 主仓库：https://github.com/zhiliumall/zhiflow
-- Gitee 主仓库：https://gitee.com/【组织名】/zhiflow
+- Gitee 主仓库：https://gitee.com/sssrer/zhiliumall
 - 在线文档：【待填】
 
 ## 相关仓库

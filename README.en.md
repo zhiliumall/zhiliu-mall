@@ -25,8 +25,8 @@ If you are looking for a Java e-commerce system, shopping cart software or e-com
 - **Deployment**: modular monolith packaged as one jar; the only required services are PostgreSQL and Valkey (or Redis)
 - **Open-source license**: AGPL-3.0, for learning, evaluation and any use that complies with the license
 - **Commercial license**: closed-source commercial use, private deployment, commercial support and the full editions; see [Licensing and editions](#licensing-and-editions)
-- **Commercial editions**: Standard, Cross-border and Healthcare; features and services are subject to the official website and contract
-- **Links**: website, edition comparison, live demo and docs; see [Resources](#resources)
+- **Commercial editions**: Standard, Cross-border and Healthcare; features and services are subject to the commercial contract
+- **Links**: source repositories; see [Resources](#resources)
 
 ## Highlights
 
@@ -49,7 +49,7 @@ The open-source edition is built directly on JDK 25 and Spring Boot 4.1. Spring 
 
 | Module | Features |
 | --- | --- |
-| Account | Username and password login, WeChat login, sign-up, profile, shipping addresses |
+| Account | Username and password login, SMS code login (optional, requires an SMS provider), WeChat login, sign-up, profile, shipping addresses |
 | Products | Home page, categories, product details, variant selection, search, trending searches |
 | Checkout | Cart, order confirmation, payment page (WeChat Pay, Alipay), payment result |
 | Orders | Order list, order details, cancel unpaid orders, confirm receipt |
@@ -73,57 +73,45 @@ These are available in the commercial editions:
 - After-sales and refunds, coupons, points, product reviews, shipping rate templates, shipment tracking, page builder, wallet balance payment, favorites, browsing history
 - Flash sales, group buying, price-cutting campaigns, affiliate distribution, paid membership, live chat, live streaming
 - Multi-store, multi-tenant SaaS, payment splitting and settlement, invoicing
-- SMS login, multiple languages, WeChat Mini Program, mobile app, PC storefront
+- Multiple languages, WeChat Mini Program, mobile app, PC storefront
 - Cross-border commerce: multiple currencies, cross-border payments and settlement, taxes and duties
 - Healthcare: online consultations, video consultations, live captions and translation during consultations, e-prescriptions
 
 ## Docs and getting started
 
-The project docs live in the `doc` directory of this repository. You can also read them here:
+Full instructions for deployment, going live, upgrades and local development are in the backend repository README (Chinese): https://github.com/zhiliumall/zhiflow#readme
 
-- Online docs: TBD
-- Setup video: TBD
-- Agent Skill: `.claude/skills/zhiflow/` for Claude Code, `.agents/skills/zhiflow/` for Cursor / Codex (same content); helps you start, use and extend the project based on its current features
+### One-command start with Docker Compose
 
-We recommend reading the docs first, then following the video to set up your local environment.
-
-### Run locally
-
-You'll need JDK 25, Maven, Node.js, PostgreSQL 18, and Valkey 9.0 or Redis. MeiliSearch and MinIO can be skipped on your first run.
-
-1. Clone the repositories
+You'll need Docker 24+ and Docker Compose v2.24+. Clone the three repositories side by side into the same directory:
 
 ```bash
+mkdir zhiflow-mall && cd zhiflow-mall
 git clone https://github.com/zhiliumall/zhiflow.git
 git clone https://github.com/zhiliumall/zhiflow-admin.git
 git clone https://github.com/zhiliumall/zhiflow-uniapp.git
+cd zhiflow
+./scripts/init-env.sh
+docker compose up -d --build
 ```
 
-2. Set up the database: follow the guide in `doc` and run the schema and seed scripts in the `db` directory.
-3. Configure the backend: fill in your database and Valkey (or Redis) connection details in `application.yml`. Payment settings can stay empty for now; browsing and placing orders still work.
-4. Start the backend: run the `zhiflow-boot` module. The default port is 8080.
-5. Start the frontends: in each of the two frontend repositories, run `npm install` and `npm run dev`, then point the API address to the backend.
+Tables are created automatically on first start. The initial password for the `admin` account is randomly generated; find it with `docker compose logs app | grep -A4 首次启动`. You'll be asked to change it on first login.
+Open `http://localhost/` for the H5 storefront and `http://localhost/admin/` for the admin console.
 
-The default admin account is in the docs. You'll be asked to change the password on first login.
-
-### Docker
-
-Docker Compose can bring up the backend, frontends, database and cache in one go. See the deployment guide in `doc`.
-
-Before going live, work through the go-live checklist in the docs, especially the WeChat Pay and Alipay sandbox tests.
+Before going live, configure your domain and HTTPS as described in the backend README, and test payments and callbacks end to end in the sandbox with your own merchant account.
 
 ## Licensing and editions
 
 The open-source edition in this repository is licensed under AGPL-3.0. You may learn from it, study it, build on it and self-host it under the terms of the license. If you run a modified version as a network service, you must make the corresponding source code available to its users.
 
-Closed-source commercial use, private deployment, commercial support, and the multi-store, multi-tenant SaaS, cross-border and healthcare editions are covered by a commercial license. See the official website for details.
+Closed-source commercial use, private deployment, commercial support, and the multi-store, multi-tenant SaaS, cross-border and healthcare editions are covered by a commercial license. Contact sales (below) for details.
 
 - **Open-source edition**: single-store shop, for learning, evaluation and AGPL-3.0-compliant use
 - **Standard edition**: multi-store, multi-tenant SaaS, marketing, affiliate distribution, customer service, Mini Program, app and other storefronts
 - **Cross-border edition**: everything in Standard, plus multiple currencies and languages, cross-border payments and settlement, taxes and duties
 - **Healthcare edition**: everything in Standard, plus online consultations, video consultations, live captions and translation, and e-prescriptions
 
-Website: TBD · Edition comparison: TBD · Customer stories: TBD · Sales inquiries: WeChat +86 17789617999 (search by phone number), or scan the WeCom QR code below
+Sales inquiries: WeChat +86 17789617999 (search by phone number), or scan the WeCom QR code below
 
 <img src="doc/images/business-qrcode.jpg" alt="ZhiFlow sales inquiries WeCom QR code" width="180">
 
@@ -149,7 +137,7 @@ Website: TBD · Edition comparison: TBD · Customer stories: TBD · Sales inquir
 | Storefronts | H5 | WeChat Mini Program, WeChat H5, H5, mobile app, PC |
 | Support | Mainly community | Commercial support |
 
-Commercial features and services are subject to the official website and contract.
+Commercial features and services are subject to the commercial contract.
 
 ## FAQ
 
@@ -159,15 +147,15 @@ ZhiFlow is an open-source Java e-commerce system. The backend runs on Spring Boo
 
 **Is the ZhiFlow open-source edition free to use?**
 
-Yes, as long as you comply with AGPL-3.0. The key requirement: if you run a modified version as a network service, you must make its source code available to your users. If AGPL-3.0 doesn't fit your project, see the website for a commercial license.
+Yes, as long as you comply with AGPL-3.0. The key requirement: if you run a modified version as a network service, you must make its source code available to your users. If AGPL-3.0 doesn't fit your project, contact sales for a commercial license.
 
 **Can I use it to run a real online shop?**
 
-Yes. The open-source edition supports WeChat Pay and Alipay, and customers can place orders inside WeChat through the H5 storefront. Before taking real payments, test payments and callbacks end to end in the sandbox with your own merchant account, then go through the go-live checklist.
+Yes. The open-source edition supports WeChat Pay and Alipay, and customers can place orders inside WeChat through the H5 storefront. Before taking real payments, test payments and callbacks end to end in the sandbox with your own merchant account.
 
 **How do I refund a paid order?**
 
-The open-source edition has no after-sales or refund feature. Issue refunds from your WeChat Pay or Alipay merchant dashboard. A built-in after-sales flow is available in the commercial editions.
+The open-source edition currently has no refund feature. Issue refunds from your WeChat Pay or Alipay merchant dashboard. v1.1 plans to add full refunds to the original payment method for unshipped orders, plus basic shipping fees (flat rate and free shipping over a threshold). Returns and the full after-sales flow are in the commercial editions.
 
 **Why no coupons or after-sales in the open-source edition?**
 
@@ -195,7 +183,7 @@ Three, all available for private deployment:
 
 **How is commercial source code delivered?**
 
-Delivery method, license term and after-sales service are subject to the official website and the commercial contract.
+Delivery method, license term and after-sales service are subject to the commercial contract.
 
 **What kinds of shops is ZhiFlow suited for?**
 
@@ -203,10 +191,8 @@ This open-source repository fits self-run single-store shops, learning Java e-co
 
 ## Resources
 
-- Website: TBD
 - GitHub repository: https://github.com/zhiliumall/zhiflow
 - Gitee repository: https://gitee.com/sssrer/zhiliumall
-- Online docs: TBD
 
 ## Related repositories
 
@@ -232,13 +218,6 @@ Each release lists the matching version of all three repositories. Please use th
 | zhiflow-api | API contracts and data transfer objects between modules |
 | zhiflow-common | Shared code: response and error handling, security context, caching, data access |
 
-## Live demo
-
-- Admin console: TBD
-- H5 storefront: TBD
-
-Demo accounts are read-only. Demo data resets every night.
-
 ## Tech stack
 
 | Technology | Version | Purpose |
@@ -260,35 +239,17 @@ Demo accounts are read-only. Demo data resets every night.
 
 Every commit runs the full unit test suite and the ArchUnit rules on GitHub Actions. If a module bypasses an API contract and depends on another module directly, the build fails.
 
-TBD: CI status badge
-
-## Screenshots
-
-<!-- Alt text is indexed by search engines; keep it descriptive -->
-
-1. Admin console
-
-![ZhiFlow admin console - product management](TBD)
-![ZhiFlow admin console - order management](TBD)
-
-2. H5 storefront
-
-![ZhiFlow H5 storefront - home page](TBD)
-![ZhiFlow H5 storefront - product details and checkout](TBD)
-
 ## Contributing
 
-Issues and pull requests are welcome. Before opening a PR, please read [CONTRIBUTING.md](CONTRIBUTING.md) and sign the Contributor License Agreement (CLA).
+Issues are welcome. We are not accepting external code contributions (pull requests) at this time.
 
 ## Security
 
-Please don't report security vulnerabilities in public issues. Contact us privately as described in [SECURITY.md](SECURITY.md).
+Please don't report security vulnerabilities in public issues. Report them privately on GitHub: [Report a vulnerability](https://github.com/zhiliumall/zhiflow/security/advisories/new).
 
 ## Community and feedback
 
-- Developer group: TBD
 - Bug reports: GitHub Issues
-- Website: TBD
 
 ## License
 
